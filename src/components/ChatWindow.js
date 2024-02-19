@@ -1,20 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {Fab, Grid, Stack, TextField, Typography, useTheme} from "@mui/material";
+import {Container, Fab, Stack, TextField, Typography, useTheme} from "@mui/material";
 import axios from "axios";
 import SendIcon from '@mui/icons-material/Send';
 import {toast} from "react-toastify";
-import Box from "@mui/material/Box";
 import styled from 'styled-components';
+import sqlMiLogo from '../assets/sqlmi.svg'
 
 const ChatBubble = styled.div`
+  display: flex;
+  flex-direction: row; /* Row orientation */
+  align-items: center; /* Align children vertically center */
   max-width: 70%;
-  background-color: ${({role}) => (role === 'user' ? '#3498db' : '#2ecc71')};
-  color: #fff;
+  color: ${({ role }) => (role === 'user' ? '#3498db' : '#2ecc71')};
   padding: 10px;
-  margin: 10px;
-  border-radius: ${({role}) =>
-          role === 'user' ? '10px 10px 10px 0' : '10px 10px 0 10px'};
-  align-self: ${({role}) => (role === 'user' ? 'flex-end' : 'flex-start')};
 `;
 
 const ChatWindow = ({databaseInformation, resetConversations}) => {
@@ -23,6 +21,7 @@ const ChatWindow = ({databaseInformation, resetConversations}) => {
     const [userQuery, setUserQuery] = useState('');
     const [chatGptUserQuery, setChatGptUserQuery] = useState(null);
     const theme = useTheme()
+
     useEffect(() => {
         setMessages(resetConversations(messages))
     }, [resetConversations]);
@@ -57,6 +56,8 @@ const ChatWindow = ({databaseInformation, resetConversations}) => {
         }
 
         if (!chatGptUserQuery) return
+        setMessages([...messages, chatGptUserQuery])
+        setUserQuery('')
         getMessages()
         // setMessages(messagesLocal)
 
@@ -67,20 +68,20 @@ const ChatWindow = ({databaseInformation, resetConversations}) => {
             case 'user':
                 return (
                     <ChatBubble role={message.role}>
-                        {message.content}
+                        <Typography variant={'h5'}><strong>{message.content}</strong></Typography>
                     </ChatBubble>
                 )
             case 'assistant':
                 return (
                     <ChatBubble role={message.role}>
-                        {message.content}
+                        <img src={sqlMiLogo} style={{height: '40px', paddingRight: 2}}/>
+                        <Typography variant={'h5'}><strong>{message.content}</strong></Typography>
                     </ChatBubble>
                 )
         }
     }
 
     function sendChatGptPrompt() {
-        console.log(userQuery)
         setChatGptUserQuery(
             {
                 "role": "user",
@@ -90,36 +91,24 @@ const ChatWindow = ({databaseInformation, resetConversations}) => {
     }
 
     return (
-        <Grid container direction={'column'}
-              sx={{
-                  width: '80vw',
-                  padding: 2,
-                  border: 1,
-                  borderWidth: '1px',
-                  borderRadius: 5,
-                  backgroundColor: 'whitesmoke',
-                  minHeight: '80vh'
-              }}>
-            <Grid item container sx={{width: '100%', minHeight: '70vh', overflow: 'hidden'}} xs={12}>
-                <Stack direction={'column'} sx={{width: '100%'}}>
-                    {messages.map(message => {
-                        return (
-                            getMessageCard(message)
-                        )
-                    })}
-                </Stack>
-            </Grid>
+        <Container sx={{width: {md:'70vw', sm: '90wv'}, maxWidth: '700px', marginTop: 3}} alignItems={'center'} alignContent={'center'}>
+            <Stack direction={'column'} sx={{minHeight: '75vh'}}>
+                {messages.map(message => {
+                    return (
+                        getMessageCard(message)
+                    )
+                })}
+            </Stack>
             {/*<Divider/>*/}
-            <Grid item container sx={{width: '100%', position: 'sticky', bottom: 'inherit', left: 'inherit'}}>
-                <Grid item xs={10} sx={{width: '90%', marginRight: 2}}>
-                    <TextField id="outlined-basic-email" label="Type Something" fullWidth
-                               onChange={e=>setUserQuery(e.target.value)}/>
-                </Grid>
-                <Grid item xs={1} align="right">
-                    <Fab color="primary" aria-label="add" onClick={sendChatGptPrompt}><SendIcon/></Fab>
-                </Grid>
-            </Grid>
-        </Grid>
+            <Stack direction={'row'} spacing={2}>
+                <TextField id="outlined-basic-email" label="Prompt Azure SQL using ChatGPT" fullWidth
+                           onChange={e => setUserQuery(e.target.value)}/>
+                <Fab color="primary" aria-label="add" onClick={sendChatGptPrompt}
+
+                     // onKeyPress={(e) => if (e.keyCode === 13) {sendChatGptPropmpt}}
+                ><SendIcon/></Fab>
+            </Stack>
+        </Container>
     );
 }
 export default ChatWindow;

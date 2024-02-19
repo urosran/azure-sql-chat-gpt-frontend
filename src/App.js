@@ -5,6 +5,8 @@ import {theme} from "./utils/Theme";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomMenu from "./components/CustomMenu";
+import Box from "@mui/material/Box";
+import chatBackground from './assets/chatBackground.png';
 
 function App() {
 
@@ -15,18 +17,20 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <CustomMenu resetConversations={resetConversations}/>
-            <Grid container alignItems={'center'} alignContent={'center'} direction={'column'} sx={{padding: 10}}>
-                {/*<Grid item>*/}
-                {/*    <Typography variant={'h2'} sx={{marginTop: 2}}>Azure SQL Chat GPT</Typography>*/}
-                {/*</Grid>*/}
-                <Grid item>
-                    <ChatWindow resetConversations={resetConversations}/>
-                </Grid>
-            </Grid>
-            <ToastContainer/>
+            <Box sx={{
+                height: '100vh',
+                width: '100%',
+                // backgroundImage: `url(${chatBackground})`,
+                // backgroundSize: 'cover'
+                backgroundColor: '#F8F8FF'
+            }}>
+                <CustomMenu resetConversations={resetConversations}/>
+                <ChatWindow resetConversations={resetConversations}/>
+                <ToastContainer/>
+            </Box>
         </ThemeProvider>
-    );
+    )
+        ;
 }
 
 export default App;

@@ -10,7 +10,7 @@ export const theme =
     palette: {
       primary: {
         // light: will be calculated from palette.primary.main,
-        main: '#5271FF',
+        main: '#007FFF',
         contrastText: '#ffffff',
         white: '#ffffff'
         // dark: will be calculated from palette.primary.main,
@@ -38,29 +38,29 @@ export const theme =
       }
     },
     typography: {
-      fontFamily: "Roboto Slab, serif",
+      fontFamily: "Noto Sans",
       h1: {
-        fontFamily: "Roboto Slab, serif",
+        fontFamily: "Noto Sans",
         fontSize: '2.8rem'
       },
       h2: {
-        fontFamily: "Roboto Slab, serif",
+        fontFamily: "Noto Sans",
         fontSize: '2.2rem'
       },
       h3: {
-        fontFamily: "Roboto Slab, serif",
+        fontFamily: "Noto Sans",
         fontSize: '1.5rem'
       },
       h4: {
-        fontFamily: "Roboto Slab, serif",
+        fontFamily: "Noto Sans",
         fontSize: '1.2rem'
       },
       h5: {
-        fontFamily: "Roboto Slab, serif",
+        fontFamily: "Noto Sans",
         fontSize: '1rem'
       },
       body1: {
-        fontFamily: "Roboto Slab, serif",
+        fontFamily: "Noto Sans",
         fontSize: '0.9rem'
       }
 
