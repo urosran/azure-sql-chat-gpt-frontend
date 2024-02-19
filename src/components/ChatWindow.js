@@ -101,7 +101,9 @@ const ChatWindow = ({databaseInformation, resetConversations}) => {
             </Stack>
             {/*<Divider/>*/}
             <Stack direction={'row'} spacing={2}>
-                <TextField id="outlined-basic-email" label="Prompt Azure SQL using ChatGPT" fullWidth
+                <TextField id="outlined-basic-email"
+                           label="Prompt Azure SQL using ChatGPT" fullWidth
+                           value={userQuery}
                            onChange={e => setUserQuery(e.target.value)}/>
                 <Fab color="primary" aria-label="add" onClick={sendChatGptPrompt}
 
