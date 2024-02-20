@@ -30,7 +30,7 @@ const ChatWindow = ({databaseInformation, resetConversations}) => {
         async function getMessages() {
             axios({
                 method: "POST",
-                url: 'http://localhost:5000/chat',
+                url: process.env.REACT_APP_SERVER_URL+'/chat',
                 data: {
                     dbInformation: databaseInformation,
                     messageHistory: messages,
