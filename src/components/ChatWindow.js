@@ -11,7 +11,7 @@ const ChatBubble = styled.div`
   flex-direction: row; /* Row orientation */
   align-items: center; /* Align children vertically center */
   max-width: 70%;
-  color: ${({ role }) => (role === 'user' ? '#3498db' : '#2ecc71')};
+  color: ${({role}) => (role === 'user' ? '#3498db' : '#2ecc71')};
   padding: 10px;
 `;
 
@@ -31,7 +31,7 @@ const ChatWindow = ({databaseInformation, resetConversations}) => {
         async function getMessages() {
             axios({
                 method: "POST",
-                url: process.env.REACT_APP_SERVER_URL+'/chat',
+                url: process.env.REACT_APP_SERVER_URL + '/chat',
                 data: {
                     dbInformation: databaseInformation,
                     messageHistory: messages,
@@ -86,7 +86,8 @@ const ChatWindow = ({databaseInformation, resetConversations}) => {
     }
 
     return (
-        <Container sx={{width: {md:'70vw', sm: '90wv'}, maxWidth: '700px', marginTop: 3}} alignItems={'center'} alignContent={'center'}>
+        <Container sx={{width: {md: '70vw', sm: '90wv'}, maxWidth: '700px', marginTop: 3}} alignItems={'center'}
+                   alignContent={'center'}>
             <Stack direction={'column'} sx={{minHeight: '75vh'}}>
                 {messages.map(message => {
                     return (
