@@ -26,6 +26,7 @@ const ChatWindow = ({databaseInformation, resetConversations}) => {
         setMessages(resetConversations(messages))
     }, [resetConversations]);
 
+
     useEffect(() => {
         async function getMessages() {
             axios({
