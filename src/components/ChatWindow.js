@@ -20,7 +20,6 @@ const ChatWindow = ({databaseInformation, resetConversations}) => {
     const [messages, setMessages] = useState(startMessageStack);
     const [userQuery, setUserQuery] = useState('');
     const [chatGptUserQuery, setChatGptUserQuery] = useState(null);
-    const theme = useTheme()
 
     useEffect(() => {
         setMessages(resetConversations(messages))
