@@ -1,12 +1,11 @@
 import React from 'react';
 import ChatWindow from "./components/ChatWindow";
-import {Grid, ThemeProvider, Typography} from "@mui/material";
+import {ThemeProvider} from "@mui/material";
 import {theme} from "./utils/Theme";
-import {ToastContainer, toast} from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomMenu from "./components/CustomMenu";
 import Box from "@mui/material/Box";
-import chatBackground from './assets/chatBackground.png';
 
 function App() {
 
@@ -29,8 +28,7 @@ function App() {
                 <ToastContainer/>
             </Box>
         </ThemeProvider>
-    )
-        ;
+    );
 }
 
 export default App;
