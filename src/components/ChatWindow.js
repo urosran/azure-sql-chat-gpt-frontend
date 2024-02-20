@@ -15,6 +15,7 @@ const ChatBubble = styled.div`
   padding: 10px;
 `;
 
+
 const ChatWindow = ({databaseInformation, resetConversations}) => {
 
     const [messages, setMessages] = useState(startMessageStack);
